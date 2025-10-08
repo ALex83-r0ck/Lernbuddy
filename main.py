@@ -21,6 +21,8 @@ class Main(MDApp):
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.theme_style = "Light"
         self.theme_cls.material_style = "M3"
+        print(f"Theme style: {self.theme_cls.theme_style}")
+        print(f"Material style: {self.theme_cls.material_style}")
         print(f"Primary palette: {self.theme_cls.primary_palette}")  # Debug
         print(f"PrimaryColor value: {self.theme_cls.primaryColor}")  # Debug: Überprüfe Farbwert
         Builder.load_file("screens/home_screen.kv")
