@@ -3,20 +3,24 @@
         orientation: "vertical"
         spacing: dp(20)
         padding: dp(20)
-        md_bg_color: [0.4, 0.6, 0.86, 1]  # Static color
+        md_bg_color: [1, 1, 1, 1]  # Weißer Hintergrund
 
         MDTopAppBar:
             title: "Lernbuddy"
-            md_bg_color: [0.4, 0.6, 0.86, 1]
+            md_bg_color: [0.0, 0.447, 0.698, 1]  # Blaue TopAppBar
+            specific_text_color: [1, 1, 1, 1]  # Weiße Schrift
             pos_hint: {"top": 1}
+            anchor_title: "center"
 
         MDTextField:
             hint_text: "Hier was eingeben"
             mode: "outlined"
             size_hint_x: 0.9
             pos_hint: {"center_x": 0.5}
+            text_color: [0, 0, 0, 1]  # Schwarze Schrift
 
         MDFabButton:
             text: "Neue Karte erstellen"
             pos_hint: {"center_x": 0.5}
             on_release: app.root.current = "eingabe"
+            text_color: [0, 0, 0, 1]  # Schwarze Schrift
