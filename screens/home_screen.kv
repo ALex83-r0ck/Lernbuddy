@@ -1,0 +1,23 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+        md_bg_color: 0, 2, 4, 1
+
+        MDTopAppBar:
+            title: "Lernbuddy"
+            md_bg_color: 0.4, 0.6, 0.86, 1
+            #specific_text_color: 1, 1, 1, 1
+            pos_hint: {"top": 2}
+
+            MDTextField:
+                hint_text: "Hier was eingeben"
+                mode: "outlined"
+                size_hint_x: 0.9
+                pos_hint: {"center_x": 0.5}
+
+            MDFabButton:
+                text: "Neue Karte erstellen"
+                pos_hint: {"center_x": 0.5}
+                on_release: app.root.current = "eingabe"

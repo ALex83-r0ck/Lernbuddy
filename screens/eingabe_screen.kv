@@ -1,0 +1,30 @@
+<EingabeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+        spacing: "16dp"
+        padding: "16dp"
+
+        MDTopAppBar:
+            title: "Lernkarten Eingabe"
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 1, 1, 1, 1
+
+        MDTextField:
+            id: feld_kartensatz
+            hint_text: "Kartengebiet"
+
+        MDTextField:
+            id: feld_frage
+            hint_text: "Frage"
+
+        MDTextField:
+            id: feld_antwort
+            hint_text: "Antwort"
+            multiline: True
+
+        MDButton:
+            style: "filled"
+            on_release: root.speichern()
+            MDButtonText:
+                text: "Speichern"
