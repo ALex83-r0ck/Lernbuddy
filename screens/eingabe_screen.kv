@@ -1,18 +1,133 @@
 <EingabeScreen>:
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(20)
-        md_bg_color: [1, 1, 1, 1]  # Weißer Hintergrund
+    ScrollView:
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(20)
+            spacing: dp(15)
 
-        MDTopAppBar:
-            title: "Lernkarten Eingabe"
-            md_bg_color: [0.0, 0.447, 0.698, 1]  # Blaue TopAppBar
-            specific_text_color: [1, 1, 1, 1]  # Weiße Schrift
-            pos_hint: {"top": 1}
-            anchor_title: "center"
+            MDTopAppBar:
+                id: top_bar
+                title: "Lernkarten erstellen"
+                md_bg_color: 0.0, 0.447, 0.6, 1
+                specific_text_color: 1,1,1,1
+                elevation: 2
+                pos_hint: {"top": 1}
 
-        MDLabel:
-            text: "Eingabe Screen"
-            halign: "center"
-            text_color: [0, 0, 0, 1]  # Schwarze Schrift
+            # === Eingaben ===
+            MDLabel:
+                text: "Eingaben zur Karte"
+                bold: True
+                font_style: "H6"
+                size_hint_y: None
+                height: dp(30)
+
+            MDSeparator:
+                height: dp(1)
+
+            MDTextField:
+                id: themengebiet
+                hint_text: "Themengebiet*"
+
+            MDTextField:
+                id: karten_nummer
+                hint_text: "Kartennummer*"
+                input_filter: "int"
+
+            MDTextField:
+                id: frage
+                hint_text: "Frage*"
+
+            MDTextField:
+                id: antwort_kurz
+                hint_text: "Kurze Antwort*"
+
+            MDTextField:
+                id: antwort_detail
+                hint_text: "Detaillierte Antwort"
+
+            # === Optionen ===
+            MDLabel:
+                text: "Optionen"
+                bold: True
+                font_style: "H6"
+                size_hint_y: None
+                height: dp(30)
+
+            MDSeparator:
+                height: dp(1)
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(20)
+                adaptive_height: True
+
+                MDCheckbox:
+                    id: checkbox_table
+                    on_active: root.toggle_checkbox("table")
+                MDLabel:
+                    text: "Tabelle hinzufügen"
+                    halign: "left"
+
+                MDCheckbox:
+                    id: checkbox_image
+                    on_active: root.toggle_checkbox("image")
+                MDLabel:
+                    text: "Bild hinzufügen"
+                    halign: "left"
+
+            # === Zugehörigkeit ===
+            MDLabel:
+                text: "Zugehörigkeit"
+                bold: True
+                font_style: "H6"
+                size_hint_y: None
+                height: dp(30)
+
+            MDSeparator:
+                height: dp(1)
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(8)
+                adaptive_height: True
+
+                SelectableChip:
+                    id: ap1_chip
+                    text: "AP1"
+                    icon_left: "numeric-1-circle"
+                    md_bg_color: 0.0, 0.447, 0.6, 1
+                    on_release: root.set_category("AP1")
+
+                SelectableChip:
+                    id: ap2_chip
+                    text: "AP2"
+                    icon_left: "numeric-2-circle"
+                    md_bg_color: 0.0, 0.447, 0.6, 1
+                    on_release: root.set_category("AP2")
+
+                SelectableChip:
+                    id: wiso_chip
+                    text: "WISO"
+                    icon_left: "book-open-page-variant"
+                    md_bg_color: 0.0, 0.447, 0.6, 1
+                    on_release: root.set_category("WISO")
+
+                SelectableChip:
+                    id: else_chip
+                    text: "Sonstiges"
+                    icon_left: "dots-horizontal"
+                    md_bg_color: 0.0, 0.447, 0.6, 1
+                    on_release: root.set_category("Sonstiges")
+                  
+            # === Speichern ===
+            MDSeparator:
+                height: dp(1)
+
+            MDRaisedButton:
+                text: "Karte speichern"
+                pos_hint: {"center_x": 0.5}
+                md_bg_color: 0.0, 0.447, 0.6, 1
+                text_color: 1,1,1,1
+                on_release: root.save_card()

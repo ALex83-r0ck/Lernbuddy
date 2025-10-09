@@ -1,6 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.lang import Builder
+from kivymd.uix.snackbar import Snackbar
 from kivymd.uix.button import MDRaisedButton
 from kivymd.theming import ThemeManager
 
@@ -19,6 +20,7 @@ class Main(MDApp):
 
     def build(self):
         self.theme_cls.primary_palette = "Blue"
+        self.theme_cls.primary_hue = "800"
         self.theme_cls.theme_style = "Light"
         self.theme_cls.material_style = "M3"
 
@@ -55,6 +57,10 @@ class Main(MDApp):
                 print("Root is None")
         except Exception as e:
             print(f"❌ Fehler in on_start: {e}")
+
+    def app_show_snackbar(self, message):
+        snackbar = Snackbar(text=message, snackbar_x="10dp", snackbar_y="10dp")
+        snackbar.open()
 
 if __name__ == "__main__":
     Main().run()

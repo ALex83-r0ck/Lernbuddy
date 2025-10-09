@@ -1,0 +1,21 @@
+{
+  "cards": [
+    {
+      "karten_nummer": 205,
+      "theme": "Planen eines Softwarproduktes | Entwicklung uns Umsetzung von Algorithmen ",
+      "category": "AP2",
+      "question": "Nenne Beispiele für Protokolle, welche auf der Vermittlungsschicht und der Transportschicht der OSI-Modells arbeiten.",
+      "answer": {
+        "simple": "",
+        "detailed": "Vermittlungsschicht: - IP, - IPSec, - ICMP, Transportschicht: -TCP, -UDP"
+      },
+      "mnemonics": [],
+      "multiple_choice": [],
+      "table": [],
+      "image_url": "",
+      "has_table": false,
+      "has_image": false,
+      "id": 1
+    }
+  ]
+}
