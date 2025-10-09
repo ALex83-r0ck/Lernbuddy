@@ -1,7 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.lang import Builder
-from kivymd.uix.button import MDFabButton
+from kivymd.uix.button import MDRaisedButton
 from kivymd.theming import ThemeManager
 
 # Screens importieren
@@ -21,18 +21,24 @@ class Main(MDApp):
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.theme_style = "Light"
         self.theme_cls.material_style = "M3"
-        print(f"Theme style: {self.theme_cls.theme_style}")
-        print(f"Material style: {self.theme_cls.material_style}")
-        print(f"Primary palette: {self.theme_cls.primary_palette}")  # Debug
-        print(f"PrimaryColor value: {self.theme_cls.primaryColor}")  # Debug: Überprüfe Farbwert
+
         Builder.load_file("screens/home_screen.kv")
         Builder.load_file("screens/eingabe_screen.kv")
         Builder.load_file("screens/stats_screen.kv")
         Builder.load_file("screens/tutor_screen.kv")
         Builder.load_file("screens/quiz_screen.kv")
-        root = Builder.load_file("main.kv")
-        print(f"Root widget: {root}")  # Debug
-        return root
+
+        self.root = self.screen_manager  # Assign self.screen_manager to self.root
+        self.root.add_widget(HomeScreen(name="home"))
+        self.root.add_widget(EingabeScreen(name="eingabe"))
+        self.root.add_widget(StatsScreen(name="stats"))
+        self.root.add_widget(TutorScreen(name="tutor"))
+        self.root.add_widget(QuizScreen(name="quiz")) 
+        print(f"Root widget: {self.root}, children: {self.root.children}")
+        print(f"Screen manager: {self.screen_manager}, children: {self.screen_manager.children}")
+
+        return self.root
+
 
     def on_start(self):
         try:
