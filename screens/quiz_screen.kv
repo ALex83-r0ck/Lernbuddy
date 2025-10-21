@@ -2,18 +2,27 @@
     name: "quiz"
     MDBoxLayout:
         orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(15)
+        padding: dp(16)
+        spacing: dp(12)
 
+        # Top Bar
+        MDTopAppBar:
+            title: "Prüfungssimulation"
+            md_bg_color: app.theme_cls.primary_color
+            elevation: 2
+            left_action_items: [["menu", lambda x: app.toggle_nav_drawer()]]
+            right_action_items: [["timer-outline", lambda x: None]]
+            specific_text_color: 1, 1, 1, 1
+
+        # Timer
         MDLabel:
             id: timer
-            text: "30:00"
+            text: "90:00"
             halign: "center"
             font_style: "H5"
             theme_text_color: "Primary"
-        
-        
 
+        # Frage
         MDLabel:
             id: question
             text: "Quiz wird geladen..."
@@ -21,15 +30,42 @@
             size_hint_y: None
             height: dp(180)
             text_size: self.width, None
+            markup: True
 
+        # Multiple Choice Container
+        MDBoxLayout:
+            id: mc_container
+            orientation: "vertical"
+            size_hint_y: None
+            height: dp(200)
+            opacity: 0
+            disabled: True
+            spacing: dp(8)
+
+            MDLabel:
+                text: "Wähle die richtige Antwort:"
+                halign: "center"
+                theme_text_color: "Secondary"
+
+            MDGridLayout:
+                id: mc_grid
+                cols: 1
+                spacing: dp(8)
+                size_hint_y: None
+                height: self.minimum_height
+
+        # Freitext Antwort
         MDTextField:
             id: answer
             hint_text: "Deine Antwort eingeben..."
             multiline: True
             size_hint_y: None
             height: dp(100)
+            mode: "rectangle"
 
+        # Abschicken
         MDRaisedButton:
             text: "Abschicken"
             pos_hint: {"center_x": .5}
+            size_hint_x: 0.6
             on_release: root.submit()
