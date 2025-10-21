@@ -1,0 +1,51 @@
+<CustomNavigationDrawer@MDNavigationDrawer>:
+    id: nav_drawer
+    radius: (0, 16, 16, 0)
+    BoxLayout:
+        orientation: "vertical"
+        padding: "8dp"
+        spacing: "8dp"
+
+        MDLabel:
+            text: "📘 Lernbuddy Menü"
+            size_hint_y: None
+            height: self.texture_size[1]
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDRectangleFlatButton:
+            text: "🏠 Home"
+            on_release:
+                app.switch_screen("home")
+                nav_drawer.set_state("close")
+
+        MDRectangleFlatButton:
+            text: "🧩 Lernkarten erstellen"
+            on_release:
+                app.switch_screen("eingabe")
+                nav_drawer.set_state("close")
+
+        MDRectangleFlatButton:
+            text: "📊 Statistiken"
+            on_release:
+                app.switch_screen("stats")
+                nav_drawer.set_state("close")
+
+        MDRectangleFlatButton:
+            text: "🎓 Tutor"
+            on_release:
+                app.switch_screen("tutor")
+                nav_drawer.set_state("close")
+
+        MDRectangleFlatButton:
+            text: "❓ Quiz"
+            on_release:
+                app.switch_screen("quiz")
+                nav_drawer.set_state("close")
+
+        MDRectangleFlatButton:
+            text: "🗂 Kartenverwaltung"
+            on_release:
+                app.switch_screen("verwaltung")
+                nav_drawer.set_state("close")

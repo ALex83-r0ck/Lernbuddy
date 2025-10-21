@@ -1,17 +1,47 @@
 <TutorScreen>:
+    name: "tutor"
     MDBoxLayout:
         orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(20)
-        md_bg_color: app.theme_cls.primary_color  # Korrigiert zu primaryColor
+        padding: dp(16)
+        spacing: dp(12)
 
         MDTopAppBar:
-            title: "Lernkarten Eingabe"
-            md_bg_color: app.theme_cls.primary_color  # Korrigiert zu primaryColor
+            title: "KI-Tutor"
+            md_bg_color: app.theme_cls.primary_color
+            elevation: 2
+            left_action_items: [["menu", lambda x: app.toggle_nav_drawer()]]
+            right_action_items: [["robot-happy", lambda x: None]]
             specific_text_color: 1, 1, 1, 1
-            pos_hint: {"top": 1}
-            anchor_title: "center"
 
-        MDLabel:
-            text: "Eingabe Screen"
-            halign: "center"
+        MDScrollView:
+            id: scroll_view
+            size_hint_y: None
+            height: root.height - dp(140)
+            do_scroll_x: False
+
+            MDBoxLayout:
+                id: chat_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(12)
+                padding: [dp(12), dp(8)]
+                adaptive_height: True
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(8)
+            padding: [dp(8), 0]
+
+            MDTextField:
+                id: input_field
+                hint_text: "Frag mich etwas zu WISO, Recht oder HGB..."
+                mode: "rectangle"
+                size_hint_x: 0.78
+                on_text_validate: root.send_message()
+
+            MDRaisedButton:
+                text: "Senden"
+                size_hint_x: 0.22
+                on_release: root.send_message()

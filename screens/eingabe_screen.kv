@@ -11,11 +11,11 @@
                 id: top_bar
                 title: "Lernkarten erstellen"
                 md_bg_color: 0.0, 0.447, 0.6, 1
-                specific_text_color: 1,1,1,1
-                elevation: 2
+                left_action_items: [["menu", lambda x: app.toggle_nav_drawer()]]
+                specific_text_color: 1, 1, 1, 1
+                elevation: 3
                 pos_hint: {"top": 1}
 
-            # === Eingaben ===
             MDLabel:
                 text: "Eingaben zur Karte"
                 bold: True
@@ -41,13 +41,15 @@
 
             MDTextField:
                 id: antwort_kurz
-                hint_text: "Kurze Antwort*"
+                hint_text: "Kurze Antwort"
 
             MDTextField:
                 id: antwort_detail
                 hint_text: "Detaillierte Antwort"
+                multiline: True
+                size_hint_y: None
+                height: dp(120)
 
-            # === Optionen ===
             MDLabel:
                 text: "Optionen"
                 bold: True
@@ -60,24 +62,88 @@
 
             MDBoxLayout:
                 orientation: "horizontal"
-                spacing: dp(20)
+                spacing: dp(25)
                 adaptive_height: True
 
-                MDCheckbox:
-                    id: checkbox_table
-                    on_active: root.toggle_checkbox("table")
-                MDLabel:
-                    text: "Tabelle hinzufügen"
-                    halign: "left"
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    adaptive_height: True
+                    MDCheckbox:
+                        id: checkbox_table
+                        on_active: root.toggle_checkbox("table")
+                    MDLabel:
+                        text: "Tabelle hinzufügen"
+                        halign: "left"
 
-                MDCheckbox:
-                    id: checkbox_image
-                    on_active: root.toggle_checkbox("image")
-                MDLabel:
-                    text: "Bild hinzufügen"
-                    halign: "left"
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    adaptive_height: True
+                    MDCheckbox:
+                        id: checkbox_image
+                        on_active: root.toggle_checkbox("image")
+                    MDLabel:
+                        text: "Bild hinzufügen"
+                        halign: "left"
 
-            # === Zugehörigkeit ===
+            # Tabellenbereich
+            MDGridLayout:
+                id: table_grid
+                cols: 1
+                spacing: dp(4)
+                adaptive_height: True
+                opacity: 0
+                disabled: True
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(8)
+                MDRaisedButton:
+                    text: "Zeile hinzufügen"
+                    on_release: root.add_table_row()
+                MDRaisedButton:
+                    text: "Letzte Zeile entfernen"
+                    on_release: root.remove_table_row()
+
+            # Bildbereich
+            MDBoxLayout:
+                id: image_container
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(8)
+                padding: dp(4)
+                opacity: 0
+                disabled: True
+
+                MDLabel:
+                    text: "Bild (Wähle Datei oder nutze Kamera)"
+                    size_hint_y: None
+                    height: dp(28)
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: dp(8)
+                    size_hint_y: None
+                    height: dp(40)
+
+                    MDRaisedButton:
+                        text: "Aus Datei wählen"
+                        on_release: root.open_file_chooser()
+
+                    MDRaisedButton:
+                        text: "Kamera öffnen"
+                        on_release: root.open_camera_dialog()
+
+                MDLabel:
+                    id: image_preview_label
+                    text: "Kein Bild ausgewählt"
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: dp(24)
+
+            # Zugehörigkeit (Chips)
             MDLabel:
                 text: "Zugehörigkeit"
                 bold: True
@@ -88,46 +154,55 @@
             MDSeparator:
                 height: dp(1)
 
-            MDBoxLayout:
-                orientation: "horizontal"
-                spacing: dp(8)
+            MDGridLayout:
+                cols: 2
+                spacing: dp(12)
                 adaptive_height: True
+                padding: dp(4)
 
-                SelectableChip:
+                MDChip:
                     id: ap1_chip
-                    text: "AP1"
-                    icon_left: "numeric-1-circle"
+                    type: "assist"
+                    ripple_effect: True
                     md_bg_color: 0.0, 0.447, 0.6, 1
                     on_release: root.set_category("AP1")
+                    MDChipText:
+                        text: "AP1"
 
-                SelectableChip:
+                MDChip:
                     id: ap2_chip
-                    text: "AP2"
-                    icon_left: "numeric-2-circle"
+                    type: "assist"
+                    ripple_effect: True
                     md_bg_color: 0.0, 0.447, 0.6, 1
                     on_release: root.set_category("AP2")
+                    MDChipText:
+                        text: "AP2"
 
-                SelectableChip:
+                MDChip:
                     id: wiso_chip
-                    text: "WISO"
-                    icon_left: "book-open-page-variant"
+                    type: "assist"
+                    ripple_effect: True
                     md_bg_color: 0.0, 0.447, 0.6, 1
                     on_release: root.set_category("WISO")
+                    MDChipText:
+                        text: "WISO"
 
-                SelectableChip:
+                MDChip:
                     id: else_chip
-                    text: "Sonstiges"
-                    icon_left: "dots-horizontal"
+                    type: "assist"
+                    ripple_effect: True
                     md_bg_color: 0.0, 0.447, 0.6, 1
                     on_release: root.set_category("Sonstiges")
-                  
-            # === Speichern ===
+                    MDChipText:
+                        text: "Sonstiges"
+
             MDSeparator:
                 height: dp(1)
 
             MDRaisedButton:
-                text: "Karte speichern"
+                text: "💾 Karte speichern"
                 pos_hint: {"center_x": 0.5}
                 md_bg_color: 0.0, 0.447, 0.6, 1
-                text_color: 1,1,1,1
+                text_color: 1, 1, 1, 1
+                elevation: 2
                 on_release: root.save_card()

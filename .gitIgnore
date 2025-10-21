@@ -3,3 +3,4 @@ progress.db
 assets
 data
 __pycache__
+.gitIgnore
