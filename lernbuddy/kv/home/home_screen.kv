@@ -1,0 +1,38 @@
+# screens/home_screen.kv
+<HomeScreen>:
+    name: "home"
+    ScrollView:
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(20)
+            spacing: dp(15)
+
+            MDTopAppBar:
+                title: "Dashboard"
+                md_bg_color: app.theme_cls.primary_color
+                elevation: 3
+                left_action_items: [["menu", lambda x: app.toggle_nav_drawer()]]
+
+            MDGridLayout:
+                cols: 2
+                spacing: dp(10)
+                adaptive_height: True
+                MDLabel:
+                    text: "Karten: 40"
+                    theme_text_color: "Primary"
+                MDLabel:
+                    text: "Streak: 2 Tage"
+                    theme_text_color: "Primary"
+                MDLabel:
+                    text: "Level: 1 (0 Punkte)"
+                    theme_text_color: "Primary"
+                MDLabel:
+                    text: "Tipp: Wiederhole täglich!"
+                    theme_text_color: "Secondary"
+
+            MDRaisedButton:
+                text: "Lernen starten"
+                pos_hint: {"center_x": .5}
+                on_release: app.switch_screen("eingabe")

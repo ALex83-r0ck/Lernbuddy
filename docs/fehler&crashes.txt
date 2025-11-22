@@ -1,0 +1,21 @@
+Fehler 1:
+> Error in login tritt auf bei verstoß gegen die vergabe des passworts: 
+> console: AttributeError: 'LoginScreen' object has no attribute 'dialog'
+> Auswirkung: führt aktuell zum absturz des Programms!
+> Selbes Problem beobachtet bei der falschen eingabe der credentials!
+
+Fehler 2:
+> aktuell schließt nach Nutzung der Kamera funktion aus dem eingabe_screen.py heraus die Kamera nicht mehr automatisch!
+> Auswirkung: Kamera ist danach dauer angeschaltet was schlecht ist und ein performance Problem darstellen kann!
+
+Fehler 3:
+> Bilder werden irgendwohin gespeichert oder noch nicht wirklich gespeichert! 
+
+Fehler 4: 
+> AI Tutor soll User persönlich grüßen im Homescreen!
+
+Fehler 5:
+> Überabreiten des Logins CRUD Funktionen!
+
+Fehler 6:
+> IDs sollen beim Speichern sortiert werden nach Lernfeld und Themengebiet und nicht nur nach der ID das vermeidet konflikte!

@@ -1,0 +1,124 @@
+LernBuddy/
+├── -p
+├── .github/
+│   │   ├── instractions/
+│   │         └── snyk_rules.instractions.md                   
+├── docs/                      
+│   ├── struktur.txt   
+│   ├── fehler&crashes.txt        
+│   └── todo.txt    
+├── .venv/                 
+│     └── Include/             
+|     └── Lib/                 
+|     └── scripts/             
+|     └── .gitignore 
+|     └── pyvenv.cfg                
+├── lernbuddy/                 
+│   ├── __init__.py
+│   ├── main.py                    
+|   ├── ai/
+│   │   ├── __init__.py
+│   │   ├── tutor_chatbot.py
+│   │   ├── ollama_manager.py
+│   │   └── embeddings.py     
+│   ├── assets/                 
+│   │   ├── icons/
+│   │   ├── images/
+│   │   └── sounds/
+│   ├── components/           
+│   │   ├── __init__.py
+│   │   ├── navigation_drawer/
+│   │   │   ├── __init__.py
+│   │   │   ├── navigation_drawer.py
+│   │   │   └── navigation_drawer.kv
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── gamification.py
+│   │   ├── models.py
+│   │   └── progress.py
+│   ├── data/
+│   │   ├── chroma_db/
+│   │   ├── migrations/
+│   │   ├── cards.jsonl
+│   │   ├── fragen.json
+│   │   ├── gamification.json
+│   │   ├── progress.db 
+│   │   └── settings.json
+│   ├── database/
+│   │   ├── migration/
+│   │   ├── __init__.py
+│   │   ├── connection.py
+│   │   └── users.db
+│   ├── kv/
+│   │   ├── cardsgenerator/
+|   |   |   |── cardsgenerator.kv
+|   |   ├── home/
+|   |   |   |── home_screen.kv
+|   |   ├── login/
+|   |   |   |── login_screen.kv
+|   |   ├── quiz/
+|   |   |   |── quiz_screen.kv
+|   |   ├── setupscreens/
+|   |   |   ├── quiz/
+|   |   |   |   |── setup_quiz.kv
+|   |   |   ├── user/
+|   |   |   |   |── setup_user.kv
+|   |   ├── splash/
+|   |   |   |── splash_screen.kv
+|   |   ├── statistik/
+|   |   |   |── stats_screen.kv
+|   |   ├── tutor/
+|   |   |   |── tutor_screen.kv
+|   |   └── verwaltung/
+|   |       |── verwaltungs_screen.kv
+│   │   ├── screen_manager.kv
+│   │   └── styles.kv
+│   ├── screens/
+│   │   ├── cardsgenerator/
+|   |   |   |── cardsgenerator.py
+|   |   ├── home/
+|   |   |   |── home_screen.py
+|   |   ├── login/
+|   |   |   |── login_screen.py
+|   |   ├── quiz/
+|   |   |   |── quiz_screen.py
+|   |   ├── setupscreens/
+|   |   |   ├── quiz/
+|   |   |   |   |── setup_quiz.py
+|   |   |   ├── user/
+|   |   |   |   |── setup_user.py
+|   |   ├── splash/
+|   |   |   |── splash_screen.py
+|   |   ├── statistik/
+|   |   |   |── stats_screen.py
+|   |   ├── tutor/
+|   |   |   |── tutor_screen.py
+|   |   └── verwaltung/
+|   |       |── verwaltungs_screen.py
+│   │   ├── __init__.py
+│   │   └── base_screen.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── quiz_service.py
+│   │   ├── user_service.py
+│   │   └── progress_service.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── helpers.py
+│   │   ├── json_handler.py
+│   │   └── logger.py
+│   ├── __init__.py
+│   ├── app.py
+├── scripts/ 
+│   ├── json_to_jsonl.py               
+├── test/
+|   ├── integration/
+|   │   ├── __init__.py
+|   ├── unit/
+|   │   ├── __init__.py
+|   └── test_json_handler.py
+└── .gitignore
+├──buildozer.spec
+├── requirements.txt
+├── README.md
+└── main.py

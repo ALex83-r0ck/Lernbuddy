@@ -1,0 +1,87 @@
+<SetupQuizScreen>:
+    name: "setup_quiz"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
+
+        MDTopAppBar:
+            title: "Quiz konfigurieren"
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    text: "Quiz-Modus"
+                    halign: "left"
+
+                MDSpinner:
+                    id: loading_spinner
+                    size_hint: None, None
+                    size: dp(40), dp(40)
+                    active: False
+                    opacity: 0
+
+                MDSpinner:
+                    size_hint_y: None
+
+                MDSpinner
+
+                Spinner:
+                    id: mode_spinner
+                    text: "Übungsquiz"
+                    values: ["Übungsquiz", "Einstellungs-Quiz", "Normales Quiz"]
+                    size_hint_y: None
+                    height: dp(48)
+
+                MDLabel:
+                    text: "Kategorie"
+                    halign: "left"
+
+                Spinner:
+                    id: category_spinner
+                    text: "Kategorie auswählen"
+                    values: []
+                    size_hint_y: None
+                    height: dp(48)
+
+                MDLabel:
+                    text: "Fragenanzahl"
+                    halign: "left"
+
+                MDSlider:
+                    id: questions_slider
+                    min: 5
+                    max: 50
+                    value: 10
+                    step: 5
+
+                MDLabel:
+                    text: "Quiz-Dauer (Minuten)"
+                    halign: "left"
+
+                MDSlider:
+                    id: time_slider
+                    min: 5
+                    max: 90
+                    value: 30
+                    step: 5
+
+                MDLabel:
+                    id: status_label
+                    text: ""
+                    markup: True
+                    halign: "center"
+                    size_hint_y: None
+                    height: dp(30)
+
+        MDRaisedButton:
+            text: "Quiz starten"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.confirm_settings()

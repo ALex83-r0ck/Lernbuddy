@@ -1,0 +1,137 @@
+#:import md_icons kivymd.icon_definitions.md_icons
+
+MDNavigationLayout:
+
+    MDScreenManager:
+        id: screen_manager
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        radius: [0, dp(16), dp(16), 0]
+        width: dp(300)
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(12)
+            spacing: dp(10)
+
+            # Header
+            MDBoxLayout:
+                size_hint_y: None
+                height: dp(80)
+                padding: [dp(16), dp(20)]
+                spacing: dp(12)
+
+                MDIcon:
+                    icon: "book-open-variant"
+                    size_hint_x: None
+                    width: dp(40)
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+
+                MDLabel:
+                    text: "Lernbuddy Pro"
+                    font_style: "H5"
+                    bold: True
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+
+            MDSeparator:
+
+            ScrollView:
+                do_scroll_x: False
+
+                MDList:
+                    id: nav_list
+
+                    OneLineAvatarIconListItem:
+                        id: home_item
+                        text: "Home"
+                        on_release: 
+                            app.switch_screen("home")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "home"
+
+                    OneLineAvatarIconListItem:
+                        id: eingabe_item
+                        text: "Lernkarte erstellen"
+                        on_release: 
+                            app.switch_screen("eingabe")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "card-plus-outline"
+
+                    OneLineAvatarIconListItem:
+                        id: stats_item
+                        text: "Statistiken"
+                        on_release: 
+                            app.switch_screen("stats")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "chart-line"
+
+                    OneLineAvatarIconListItem:
+                        id: tutor_item
+                        text: "KI-Tutor"
+                        on_release: 
+                            app.switch_screen("tutor")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "robot-happy"
+
+                    OneLineAvatarIconListItem:
+                        id: quiz_item
+                        text: "Quiz-Modus"
+                        on_release: 
+                            app.switch_screen("quiz")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "brain"
+
+                    OneLineAvatarIconListItem:
+                        id: verwaltung_item
+                        text: "Kartenverwaltung"
+                        on_release: 
+                            app.switch_screen("verwaltung")
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "folder-wrench"
+
+                    MDSeparator:
+                        height: dp(20)
+
+                    OneLineAvatarIconListItem:
+                        text: "Dark Mode"
+                        on_release: 
+                            app.theme_cls.theme_style = "Dark" if app.theme_cls.theme_style == "Light" else "Light"
+                            app.save_theme()
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "weather-night" if app.theme_cls.theme_style == "Light" else "white-balance-sunny"
+
+                    OneLineAvatarIconListItem:
+                        text: "Backup erstellen"
+                        on_release: 
+                            app.export_backup()
+                            app.root.ids.nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            id: icon
+                            icon: "cloud-download"
+
+                    OneLineAvatarIconListItem:
+                        text: "Beenden"
+                        on_release: 
+                            app.stop()
+                        IconLeftWidget:
+                            id: icon
+                            icon: "power"
+                            theme_text_color: "Custom"
+                            text_color: (1, 0, 0, 1)

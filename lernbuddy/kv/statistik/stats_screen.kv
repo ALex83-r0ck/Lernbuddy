@@ -1,0 +1,172 @@
+#:import md_icons kivymd.icon_definitions.md_icons
+
+<StatsScreen>:
+    name: "stats"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        # --- Top App Bar ---
+        MDTopAppBar:
+            title: "Statistiken"
+            md_bg_color: app.theme_cls.primary_color if app else [0.2,0.5,1,1]
+            elevation: 0
+            left_action_items: [["menu", lambda x: app.toggle_nav_drawer() if app else None]]
+            right_action_items: [["home", lambda x: app.switch_screen("home") if app else None],["card-plus-outline", lambda x: app.switch_screen("eingabe") if app else None],["brain", lambda x: app.switch_screen("quiz") if app else None],["robot-happy", lambda x: app.switch_screen("tutor") if app else None],["folder-wrench", lambda x: app.switch_screen("verwaltung") if app else None]]
+            specific_text_color: 1, 1, 1, 1
+            radius: [0, 0, dp(16), dp(16)]
+
+        ScrollView:
+            do_scroll_x: False
+            bar_width: dp(4)
+            bar_color: app.theme_cls.primary_color if app else [0.2,0.5,1,1]
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                adaptive_height: True
+
+                # --- Titel ---
+                MDLabel:
+                    text: "Dein Lernfortschritt"
+                    halign: "center"
+                    font_style: "H4"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(8)
+
+                # --- Fortschritts-Card ---
+                MDCard:
+                    style: "elevated"
+                    size_hint_y: None
+                    height: dp(120)
+                    padding: dp(16)
+                    radius: [dp(16)]
+                    elevation: 1
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        spacing: dp(8)
+
+                        MDLabel:
+                            id: total_label
+                            text: "Gesamt: 0 Karten"
+                            halign: "center"
+                            theme_text_color: "Secondary"
+                            font_style: "Subtitle1"
+
+                        MDBoxLayout:
+                            orientation: "horizontal"
+                            spacing: dp(8)
+                            adaptive_height: True
+
+                            MDLabel:
+                                id: progress_label
+                                text: "0/0 Karten"
+                                theme_text_color: "Secondary"
+                                font_style: "Caption"
+
+                            MDLabel:
+                                id: progress_percent
+                                text: "0.0%"
+                                halign: "right"
+                                theme_text_color: "Primary"
+                                font_style: "Caption"
+
+                        MDProgressBar:
+                            id: progress_bar
+                            value: 0
+                            color: app.theme_cls.accent_color if app else [0.1,0.6,0.9,1]
+
+                # --- Statistiken Übersicht ---
+                MDLabel:
+                    text: "Übersicht"
+                    halign: "left"
+                    font_style: "Subtitle1"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: dp(36)
+
+                MDGridLayout:
+                    id: stats_container
+                    cols: 2
+                    spacing: dp(12)
+                    padding: [dp(4), 0]
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(80)
+                    row_force_default: True
+
+                # --- Letzte Prüfungen ---
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(40)
+                    spacing: dp(8)
+                    padding: [0, dp(8), 0, 0]
+
+                    MDLabel:
+                        text: "Letzte Prüfungen"
+                        font_style: "Subtitle1"
+                        theme_text_color: "Primary"
+
+                    MDIconButton:
+                        icon: "refresh"
+                        theme_icon_color: "Primary"
+                        on_release: root.refresh_history()
+
+                ScrollView:
+                    size_hint_y: None
+                    height: dp(200)
+                    do_scroll_x: False
+                    bar_width: dp(4)
+                    bar_color: app.theme_cls.primary_color if app else [0.2,0.5,1,1]
+
+                    MDList:
+                        id: history_list
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(8)
+                        spacing: dp(4)
+
+                # --- Badges / Erfolge ---
+                MDLabel:
+                    text: "Deine Erfolge"
+                    halign: "left"
+                    font_style: "Subtitle1"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: dp(36)
+
+                ScrollView:
+                    size_hint_y: None
+                    height: dp(120)
+                    do_scroll_x: True
+                    do_scroll_y: False
+                    bar_width: 0
+
+                    MDGridLayout:
+                        id: badges_grid
+                        cols: 3
+                        spacing: dp(12)
+                        padding: dp(8)
+                        size_hint_x: None
+                        width: self.minimum_width
+                        height: dp(100)
+                        row_default_height: dp(80)
+                        row_force_default: True
+                        col_default_width: dp(100)
+                        col_force_default: True
+
+                # --- Backup Button ---
+                MDRectangleFlatButton:
+                    text: "Backup erstellen"
+                    icon_left: "cloud-upload"
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.8
+                    height: dp(48)
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: app.theme_cls.primary_color if app else [0.2,0.5,1,1]
+                    on_release: app.export_backup() if app else None

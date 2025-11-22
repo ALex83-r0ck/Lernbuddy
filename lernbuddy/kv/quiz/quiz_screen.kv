@@ -1,0 +1,44 @@
+<QuizScreen>:
+    name: "quiz"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(15)
+        padding: dp(20)
+
+        MDTopAppBar:
+            title: "Quiz"
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+
+        MDLabel:
+            id: timer_label
+            text: "00:00"
+            halign: "center"
+            font_style: "H4"
+            theme_text_color: "Primary"
+
+        MDLabel:
+            id: question_label
+            text: "Frage wird geladen..."
+            halign: "center"
+            markup: True
+
+        MDRaisedButton:
+            id: answer_a
+            text: "A"
+            on_release: root.select_answer("a")
+
+        MDRaisedButton:
+            id: answer_b
+            text: "B"
+            on_release: root.select_answer("b")
+
+        MDRaisedButton:
+            id: answer_c
+            text: "C"
+            on_release: root.select_answer("c")
+
+        MDRaisedButton:
+            id: answer_d
+            text: "D"
+            on_release: root.select_answer("d")

@@ -1,0 +1,48 @@
+<TutorScreen>:
+    name: "tutor"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "KI-Tutor"
+            left_action_items: [["menu", lambda x: app.toggle_nav_drawer()]]
+            right_action_items: [["robot-happy-outline", lambda x: None]]
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 1, 1, 1, 1
+            elevation: 2
+
+        MDScrollView:
+            id: scroll_view
+            do_scroll_x: False
+            bar_width: dp(4)
+            bar_color: app.theme_cls.primary_color
+            bar_inactive_color: (0.7, 0.7, 0.7, 0.3)
+
+            MDBoxLayout:
+                id: chat_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                padding: dp(12)
+                adaptive_height: True
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(72)
+            padding: dp(12)
+            spacing: dp(8)
+
+            MDTextField:
+                id: input_field
+                hint_text: "Frag mich etwas zu WISO, AP1, Recht..."
+                mode: "rectangle"
+                on_text_validate: root.send_message()
+                multiline: False
+
+            MDRaisedButton:
+                text: "Senden"
+                md_bg_color: app.theme_cls.primary_color
+                text_color: 1, 1, 1, 1
+                on_release: root.send_message()

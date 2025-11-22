@@ -1,0 +1,52 @@
+# kv/splash_screen.kv
+<SplashScreen>:
+    name: "splash"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(40)
+        spacing: dp(24)
+        md_bg_color: app.theme_cls.bg_dark if app.theme_cls.theme_style == "Dark" else [1, 1, 1, 1]
+
+        MDLabel:
+            id: welcome
+            text: "Willkommen!"
+            font_style: "H3"
+            halign: "center"
+            theme_text_color: "Primary"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(16)
+
+        MDProgressBar:
+            value: 100
+            type: "indeterminate"
+            color: app.theme_cls.primary_color
+            height: dp(6)
+
+        MDLabel:
+            id: status
+            text: "Lade deine Lernwelt..."
+            halign: "center"
+            theme_text_color: "Secondary"
+            font_style: "Subtitle1"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(8)
+
+        MDLabel:
+            id: clock
+            text: "00:00:00"
+            halign: "center"
+            theme_text_color: "Secondary"
+            font_style: "Subtitle1"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(8)
+
+        Widget:
+            size_hint_y: 1  # Abstand zwischen Uhr und Button
+
+        MDRaisedButton:
+            text: "Lernen starten"
+            pos_hint: {"center_x": 0.5}
+            md_bg_color: app.theme_cls.primary_color
+            text_color: 1, 1, 1, 1
+            size_hint: None, None

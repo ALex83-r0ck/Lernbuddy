@@ -4,3 +4,8 @@ assets
 data
 __pycache__
 .gitIgnore
+# Snyk Security Extension - AI Rules (auto-generated)
+.github\instructions\snyk_rules.instructions.md
+database/users.db
+todo.txt
+.gitIgnore
