@@ -3,3 +3,5 @@ chromadb
 sentence-transformers
 kivy[base]
 markdown
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
+transformers>=5.0.0rc1 # not directly required, pinned by Snyk to avoid a vulnerability
